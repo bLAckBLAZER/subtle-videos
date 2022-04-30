@@ -1,6 +1,5 @@
 import {
   MdHome,
-  MdExplore,
   MdHistory,
   MdPlaylistPlay,
   MdThumbUp,
@@ -22,14 +21,6 @@ export const SideNavBar = () => {
       >
         <SideNavBarItem itemName="Home" itemIcon={<MdHome size={28} />} />
       </NavLink>
-      {/* <NavLink
-        to="/explore"
-        style={({ isActive }) => {
-          return { backgroundColor: isActive && "#ff0000" };
-        }}
-      >
-        <SideNavBarItem itemName="Explore" itemIcon={<MdExplore size={28} />} />
-      </NavLink> */}
       <NavLink
         to="/history"
         style={({ isActive }) => {
