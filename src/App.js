@@ -5,6 +5,9 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<h1>Homepage</h1>} />
+      <Route path="/login" element={<h1>Login</h1>} />
+      <Route path="/logout" element={<h1>Logout</h1>} />
+      <Route path="/signup" element={<h1>Signup</h1>} />
       <Route
         path="*"
         element={
