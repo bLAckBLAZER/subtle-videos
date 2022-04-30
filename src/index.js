@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
+import "./styles/index.css";
 
 // Call make Server
 makeServer();

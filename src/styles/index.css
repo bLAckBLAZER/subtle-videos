@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Dancing+Script&family=Comfortaa&display=swap");
+
+@import url(./utils.css);
+
+:root {
+  --background-color: #181818;
+  --title-font-family: "Dancing Script", cursive;
+  --primary-color: #ff0000;
+  --secondary-color: #202020;
+  --primary-btn-hover: #ff0000d3;
+}
+
+body {
+  background-color: var(--background-color);
+  font-family: "Comfortaa", cursive;
+  min-width: 300px;
+  color: var(--pure-white);
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.fas.fa-heart {
+  color: red;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+.btn {
+  max-width: 100%;
+}
+
+main {
+  color: var(--text-color);
+  background-color: var(--secondary-color);
+}
