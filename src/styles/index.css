@@ -43,3 +43,8 @@ main {
   color: var(--text-color);
   background-color: var(--secondary-color);
 }
+
+.page {
+  flex: 1;
+  background-color: var(--background-color);
+}
