@@ -34,6 +34,14 @@
     width: 100%;
   }
 
+  .side-navbar a {
+    flex: 1;
+  }
+
+  .sidebar-item {
+    justify-content: center;
+  }
+
   .sidebar-item .h3 {
     display: none;
   }
