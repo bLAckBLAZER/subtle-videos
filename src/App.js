@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { NavBar, SideNavBar } from "./components";
-import { PageNotFound, Homepage } from "./pages";
+import { PageNotFound, Homepage, Login, Signup } from "./pages";
+import { PrivateRoute } from "./router/PrivateRoute";
 
 const App = () => {
   return (
@@ -10,14 +11,15 @@ const App = () => {
         <SideNavBar />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<h1>Login</h1>} />
-          <Route path="/logout" element={<h1>Logout</h1>} />
-          <Route path="/signup" element={<h1>Signup</h1>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
 
-          <Route path="/history" element={<h1>History</h1>} />
-          <Route path="/playlists" element={<h1>playlists</h1>} />
-          <Route path="/likedVideos" element={<h1>likedVideos</h1>} />
-          <Route path="/watchLater" element={<h1>watchLater</h1>} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/history" element={<h1>History</h1>} />
+            <Route path="/playlists" element={<h1>playlists</h1>} />
+            <Route path="/likedVideos" element={<h1>likedVideos</h1>} />
+            <Route path="/watchLater" element={<h1>watchLater</h1>} />
+          </Route>
 
           <Route
             path="*"
