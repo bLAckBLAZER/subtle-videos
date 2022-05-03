@@ -13,7 +13,7 @@
 body {
   background-color: var(--background-color);
   font-family: "Comfortaa", cursive;
-  min-width: 300px;
+  min-width: 320px;
   color: var(--pure-white);
 }
 

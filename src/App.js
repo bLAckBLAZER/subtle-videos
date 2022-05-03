@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { NavBar, SideNavBar } from "./components";
-import { PageNotFound, Homepage, Login, Signup } from "./pages";
+import { Explore, PageNotFound, Homepage, Login, Signup } from "./pages";
 import { PrivateRoute } from "./router/PrivateRoute";
 
 const App = () => {
@@ -11,6 +11,7 @@ const App = () => {
         <SideNavBar />
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
 
