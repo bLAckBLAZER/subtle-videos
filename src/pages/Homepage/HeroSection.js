@@ -6,7 +6,7 @@ export const HeroSection = () => {
   return (
     <section className="hero-section">
       <figure className="img-container">
-        <img src={BackgroundImg} alt="background-image" className="img-res" />
+        <img src={BackgroundImg} alt="anime background" className="img-res" />
       </figure>
       <div className="hero-text txt-center">
         <div className="h1">Welcome to Anime world!</div>
