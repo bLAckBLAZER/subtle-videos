@@ -1,12 +1,13 @@
 import "../../styles/navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/subtle-videos-logo.png";
 import { Input, Hamburger } from "../../components";
+import { useAuth } from "../../contexts";
+import { userLogout } from "../../utils/authenticationCalls";
 
 export const NavBar = () => {
-  const authState = {
-    token: null,
-  };
+  const { authState, dispatchAuth } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <nav className="navbar fixed">
@@ -24,9 +25,12 @@ export const NavBar = () => {
       <ul className="nav-actions">
         <li className="nav-action-item">
           {authState.token ? (
-            <Link to="/logout">
-              <button className="btn btn-primary">Logout</button>
-            </Link>
+            <button
+              className="btn btn-primary"
+              onClick={() => userLogout(dispatchAuth, navigate)}
+            >
+              Logout
+            </button>
           ) : (
             <Link to="/login">
               <button className="btn btn-primary">Login</button>
