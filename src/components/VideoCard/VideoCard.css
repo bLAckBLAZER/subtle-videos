@@ -4,8 +4,8 @@
 }
 
 .video-card .card {
-  width: 320px;
-  height: 256px;
+  width: 20rem;
+  height: 16rem;
   max-height: 100%;
 }
 
@@ -36,5 +36,5 @@
 
 .video-card .card .card-img:hover {
   cursor: pointer;
-  opacity: 60%;
+  opacity: 0.6;
 }
