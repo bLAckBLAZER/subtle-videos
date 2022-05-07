@@ -23,7 +23,7 @@ export const VideoDetails = ({ videoDetails }) => {
           </div>
         </div>
       </div>
-      <div className="video-detail-card flex justify-between gap-1">
+      <div className="video-detail-card flex justify-between align-ctr gap-1">
         <img src="https://picsum.photos/200" alt="" className="avatar" />
         <div className="flex-1">
           <div className="h3">{channel}</div>
