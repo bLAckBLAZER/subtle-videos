@@ -1,0 +1,11 @@
+@media screen and (max-width: 1180px) {
+  .explore .grid-3-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .explore .grid-3-col {
+    grid-template-columns: 1fr;
+  }
+}
