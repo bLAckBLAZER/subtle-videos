@@ -15,7 +15,6 @@ export const SingleVideoPage = () => {
     getVideo(videoId, setVideoDetails);
     getAllVideos(setVideos);
   }, []);
-
   const relatedVideos = videos.slice(1, 10);
 
   return (
