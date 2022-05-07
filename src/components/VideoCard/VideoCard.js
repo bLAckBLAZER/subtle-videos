@@ -7,7 +7,7 @@ export const VideoCard = ({ video }) => {
     <div className="video-card">
       <div className="card">
         <div className="card-body">
-          <Link to="/">
+          <Link to={`/watch/${video._id}`}>
             <div className="card-img">
               <img
                 src={`https://img.youtube.com/vi/${video._id}/mqdefault.jpg`}

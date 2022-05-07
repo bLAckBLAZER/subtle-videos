@@ -1,6 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import { NavBar, SideNavBar } from "./components";
-import { Explore, PageNotFound, Homepage, Login, Signup } from "./pages";
+import {
+  Explore,
+  PageNotFound,
+  Homepage,
+  Login,
+  Signup,
+  SingleVideoPage,
+} from "./pages";
 import { PrivateRoute } from "./router/PrivateRoute";
 
 const App = () => {
@@ -14,6 +21,7 @@ const App = () => {
           <Route path="/explore" element={<Explore />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/watch/:videoId" element={<SingleVideoPage />} />
 
           <Route element={<PrivateRoute />}>
             <Route path="/history" element={<h1>History</h1>} />
