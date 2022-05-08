@@ -11,6 +11,12 @@ export const dataReducer = (state, { type, payload }) => {
         ),
       };
 
+    case "SET_LIKE_VIDEOS":
+      return {
+        ...state,
+        likedVideos: payload,
+      };
+
     case "ADD_WATCH_LATER":
       return {
         ...state,
@@ -24,7 +30,11 @@ export const dataReducer = (state, { type, payload }) => {
           (video) => video._id !== payload._id
         ),
       };
-
+    case "SET_WATCH_LATER":
+      return {
+        ...state,
+        watchLaterVideos: payload,
+      };
     case "ADD_TO_HISTORY":
       return { ...state, userHistory: state.userHistory.concat(payload) };
 
@@ -40,6 +50,13 @@ export const dataReducer = (state, { type, payload }) => {
         ...state,
         userHistory: [],
       };
+
+    case "SET_HISTORY":
+      return {
+        ...state,
+        userHistory: payload,
+      };
+
     default:
       return state;
   }

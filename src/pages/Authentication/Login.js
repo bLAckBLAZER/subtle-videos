@@ -3,13 +3,14 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Box } from "../../components";
 import { userLogin } from "../../utils/authenticationCalls";
-import { useAuth } from "../../contexts";
+import { useAuth, useData } from "../../contexts";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { dispatchAuth } = useAuth();
+  const { dispatchData } = useData();
   const navigate = useNavigate();
   const location = useLocation();
   const gotoPath = location.state?.from?.pathname || "/";
@@ -80,7 +81,8 @@ export const Login = () => {
                     email,
                     password,
                     navigate,
-                    gotoPath
+                    gotoPath,
+                    dispatchData
                   )
                 }
               >
@@ -111,7 +113,8 @@ export const Login = () => {
                   testData.email,
                   testData.password,
                   navigate,
-                  gotoPath
+                  gotoPath,
+                  dispatchData
                 )
               }
             >

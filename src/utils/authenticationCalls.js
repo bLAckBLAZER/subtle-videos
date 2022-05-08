@@ -1,5 +1,10 @@
 import axios from "axios";
 import { removeLocalStorage, setLocalStorage } from "./localStorageCalls";
+import {
+  getUserLikedVideos,
+  getUserWatchHistory,
+  getUserWatchLater,
+} from "./videoServerCalls";
 
 export const userLogin = async (
   event,
@@ -7,7 +12,8 @@ export const userLogin = async (
   email,
   password,
   navigate,
-  gotoPath
+  gotoPath,
+  dispatchData
 ) => {
   event.preventDefault();
 
@@ -24,6 +30,11 @@ export const userLogin = async (
 
       setLocalStorage("token", encodedToken);
       setLocalStorage("user", foundUser, true);
+
+      getUserLikedVideos(dispatchData, encodedToken);
+      getUserWatchHistory(dispatchData, encodedToken);
+      getUserWatchLater(dispatchData, encodedToken);
+      // getUserPlaylists()
 
       navigate(gotoPath);
     }
@@ -48,7 +59,8 @@ export const userSignup = async (
   event,
   { firstName, lastName, email, password },
   dispatch,
-  navigate
+  navigate,
+  dispatchData
 ) => {
   event.preventDefault();
 
@@ -67,6 +79,10 @@ export const userSignup = async (
 
       setLocalStorage("token", encodedToken);
       setLocalStorage("user", foundUser, true);
+
+      getUserLikedVideos(dispatchData, encodedToken);
+      getUserWatchHistory(dispatchData, encodedToken);
+      getUserWatchLater(dispatchData, encodedToken);
 
       navigate("/");
     }

@@ -218,3 +218,63 @@ export const clearHistory = async (dispatchData, token) => {
     console.error("Error clearing user history", err);
   }
 };
+
+export const getUserLikedVideos = async (dispatchData, token) => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: "/api/user/likes",
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      dispatchData({ type: "SET_LIKE_VIDEOS", payload: res.data.likes });
+    } else {
+      console.error("set like videos failed with status: ", res.status);
+    }
+  } catch (err) {
+    console.error("Error setting liked videos", err);
+  }
+};
+
+export const getUserWatchHistory = async (dispatchData, token) => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: "/api/user/history",
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      dispatchData({ type: "SET_HISTORY", payload: res.data.history });
+    } else {
+      console.error("set history failed with status: ", res.status);
+    }
+  } catch (err) {
+    console.error("Error setting user history", err);
+  }
+};
+
+export const getUserWatchLater = async (dispatchData, token) => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: "/api/user/watchlater",
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      dispatchData({ type: "SET_WATCH_LATER", payload: res.data.watchlater });
+    } else {
+      console.error("set watchlater failed with status: ", res.status);
+    }
+  } catch (err) {
+    console.error("Error setting user watchlater", err);
+  }
+};

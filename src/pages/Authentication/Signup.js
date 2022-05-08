@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Box } from "../../components";
 import { setUserDetailsReducer } from "../../reducers";
 import { userSignup } from "../../utils/authenticationCalls";
-import { useAuth } from "../../contexts";
+import { useAuth, useData } from "../../contexts";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export const Signup = () => {
@@ -28,12 +28,15 @@ export const Signup = () => {
 
   const navigate = useNavigate();
   const { dispatchAuth } = useAuth();
+  const { dispatchData } = useData();
 
   return (
     <div className="auth page">
       <Box className="mg-y-auto">
         <form
-          onSubmit={(e) => userSignup(e, userDetails, dispatchAuth, navigate)}
+          onSubmit={(e) =>
+            userSignup(e, userDetails, dispatchAuth, navigate, dispatchData)
+          }
         >
           <div className="h2 txt-center">Signup</div>
           <div className="width-100">
