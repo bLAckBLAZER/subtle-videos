@@ -24,6 +24,17 @@ export const dataReducer = (state, { type, payload }) => {
           (video) => video._id !== payload._id
         ),
       };
+
+    case "ADD_TO_HISTORY":
+      return { ...state, userHistory: state.userHistory.concat(payload) };
+
+    case "REMOVE_FROM_HISTORY":
+      return {
+        ...state,
+        userHistory: state.userHistory.filter(
+          (video) => video._id !== payload._id
+        ),
+      };
     default:
       return state;
   }

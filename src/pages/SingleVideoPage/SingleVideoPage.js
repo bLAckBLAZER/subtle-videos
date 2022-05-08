@@ -3,13 +3,20 @@ import ReactPlayer from "react-player/youtube";
 import "./SingleVideoPage.css";
 import { VideoDetails } from "./VideoDetails";
 import { useState, useEffect } from "react";
-import { getVideo, getAllVideos } from "../../utils/videoServerCalls";
+import {
+  getVideo,
+  getAllVideos,
+  updateHistory,
+} from "../../utils/videoServerCalls";
 import { VideoCard } from "../../components";
+import { useAuth, useData } from "../../contexts";
 
 export const SingleVideoPage = () => {
   const { videoId } = useParams();
   const [videoDetails, setVideoDetails] = useState({});
   const [videos, setVideos] = useState([]);
+  const { dataState, dispatchData } = useData();
+  const { authState } = useAuth();
 
   useEffect(() => {
     getVideo(videoId, setVideoDetails);
@@ -26,6 +33,16 @@ export const SingleVideoPage = () => {
             controls={true}
             width={"100%"}
             height={"100%"}
+            onStart={() =>
+              authState.token
+                ? updateHistory(
+                    videoDetails,
+                    dataState.userHistory,
+                    dispatchData,
+                    authState.token
+                  )
+                : null
+            }
           />
         </div>
 

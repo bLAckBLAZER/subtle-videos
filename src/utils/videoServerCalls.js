@@ -1,4 +1,5 @@
 import axios from "axios";
+import { isPresentInList } from "./helperFunctions";
 
 export const getAllVideos = async (setVideos) => {
   try {
@@ -117,5 +118,83 @@ export const toggleWatchLater = (video, dispatchData, token, isWatchLater) => {
     addWatchLater(video, dispatchData, token);
   } else {
     removeWatchLater(video, dispatchData, token);
+  }
+};
+
+export const addToHistory = async (video, dispatchData, token) => {
+  try {
+    const res = await axios({
+      method: "post",
+      url: "/api/user/history",
+      data: {
+        video,
+      },
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 201) {
+      dispatchData({ type: "ADD_TO_HISTORY", payload: video });
+    } else {
+      console.error("add to history failed with status: ", res.status);
+    }
+  } catch (err) {
+    console.error("Error adding video to history", err);
+  }
+};
+
+export const deleteFromHistory = async (video, dispatchData, token) => {
+  try {
+    const res = await axios({
+      method: "delete",
+      url: `/api/user/history/${video._id}`,
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      dispatchData({ type: "REMOVE_FROM_HISTORY", payload: video });
+    } else {
+      console.error(
+        "remove from history call failed with status: ",
+        res.status
+      );
+    }
+  } catch (err) {
+    console.error("Error removing video from history", err);
+  }
+};
+
+export const deleteAndAddToHistory = async (video, dispatchData, token) => {
+  try {
+    const res = await axios({
+      method: "delete",
+      url: `/api/user/history/${video._id}`,
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      dispatchData({ type: "REMOVE_FROM_HISTORY", payload: video });
+      addToHistory(video, dispatchData, token);
+    } else {
+      console.error(
+        "remove from history call failed with status: ",
+        res.status
+      );
+    }
+  } catch (err) {
+    console.error("Error removing video from history", err);
+  }
+};
+
+export const updateHistory = (video, userHistory, dispatchData, token) => {
+  if (isPresentInList(video._id, userHistory)) {
+    deleteAndAddToHistory(video, dispatchData, token);
+  } else {
+    addToHistory(video, dispatchData, token);
   }
 };

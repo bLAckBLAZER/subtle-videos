@@ -9,6 +9,7 @@ import {
   SingleVideoPage,
   LikedVideos,
   WatchLater,
+  HistoryPage,
 } from "./pages";
 import { PrivateRoute } from "./router/PrivateRoute";
 
@@ -26,7 +27,7 @@ const App = () => {
           <Route path="/watch/:videoId" element={<SingleVideoPage />} />
 
           <Route element={<PrivateRoute />}>
-            <Route path="/history" element={<h1>History</h1>} />
+            <Route path="/history" element={<HistoryPage />} />
             <Route path="/playlists" element={<h1>playlists</h1>} />
             <Route path="/likedVideos" element={<LikedVideos />} />
             <Route path="/watchLater" element={<WatchLater />} />
