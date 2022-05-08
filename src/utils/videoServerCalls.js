@@ -13,7 +13,6 @@ export const getVideo = async (videoId, setVideoDetails) => {
   try {
     const res = await axios.get(`/api/video/${videoId}`);
     setVideoDetails(res.data.video);
-    console.log("Single Video Data: ", res);
   } catch {
     console.error("Error getting single videos");
   }
