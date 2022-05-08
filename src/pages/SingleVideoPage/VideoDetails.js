@@ -1,20 +1,65 @@
 import { MdPlaylistPlay, MdThumbUp, MdWatchLater } from "react-icons/md";
-
+import { useNavigate } from "react-router-dom";
+import { useAuth, useData } from "../../contexts";
+import {
+  toggleLikeVideo,
+  toggleWatchLater,
+} from "../../utils/videoServerCalls";
+import { useState, useEffect } from "react";
+import { isPresentInList } from "../../utils/helperFunctions";
 export const VideoDetails = ({ videoDetails }) => {
   const { title, dateAdded, description, views, channel } = videoDetails;
+  const { dataState, dispatchData } = useData();
+  const { authState } = useAuth();
+
+  const navigate = useNavigate();
+
+  const [isVideoLiked, setIsVideoLiked] = useState(false);
+  const [isWatchLater, setIsWatchLater] = useState(false);
+
+  useEffect(() => {
+    setIsVideoLiked(isPresentInList(videoDetails._id, dataState.likedVideos));
+    setIsWatchLater(
+      isPresentInList(videoDetails._id, dataState.watchLaterVideos)
+    );
+  });
 
   return (
     <div className="video-details">
       <div className="h3">{title}</div>
-      <div className="video-detail-card flex flex-wrap gap-1 justify-between">
+      <div className="video-detail-card flex flex-wrap gap-1 justify-between align-ctr">
         <small>{`${views} views | ${dateAdded}`}</small>
         <div className="video-actions-container flex gap-1">
-          <div className="video-action flex justify-between gap-half align-ctr">
-            <MdThumbUp size={20} />
+          <div
+            className="video-action flex justify-between gap-half align-ctr"
+            onClick={() =>
+              authState.token
+                ? toggleLikeVideo(
+                    videoDetails,
+                    dispatchData,
+                    authState.token,
+                    isVideoLiked
+                  )
+                : navigate("/login")
+            }
+          >
+            <MdThumbUp size={20} color={isVideoLiked ? "red" : ""} />
             Like
           </div>
-          <div className="video-action flex justify-between gap-half align-ctr">
-            <MdWatchLater size={20} />
+          <div
+            className="video-action flex justify-between gap-half align-ctr"
+            onClick={() =>
+              authState.token
+                ? toggleWatchLater(
+                    videoDetails,
+                    dispatchData,
+                    authState.token,
+                    isWatchLater
+                  )
+                : navigate("/login")
+            }
+          >
+            <MdWatchLater size={20} color={isWatchLater ? "red" : ""} />
             Watch later
           </div>
           <div className="video-action flex justify-between gap-half align-ctr">

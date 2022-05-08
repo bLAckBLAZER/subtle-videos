@@ -1,8 +1,21 @@
 import "./VideoCard.css";
 import { MdWatchLater } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toggleWatchLater } from "../../utils/videoServerCalls";
+import { useAuth, useData } from "../../contexts";
+import { isPresentInList } from "../../utils/helperFunctions";
+import { useEffect, useState } from "react";
 
 export const VideoCard = ({ video }) => {
+  const { authState } = useAuth();
+  const { dataState, dispatchData } = useData();
+  const [isWatchLater, setIsWatchLater] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsWatchLater(isPresentInList(video._id, dataState.watchLaterVideos));
+  });
+
   return (
     <div className="video-card">
       <div className="card">
@@ -24,7 +37,20 @@ export const VideoCard = ({ video }) => {
               <p className="card-text">{video.channel}</p>
             </div>
 
-            <i>{<MdWatchLater size={20} />}</i>
+            <i
+              onClick={() =>
+                authState.token
+                  ? toggleWatchLater(
+                      video,
+                      dispatchData,
+                      authState.token,
+                      isWatchLater
+                    )
+                  : navigate("/login")
+              }
+            >
+              {<MdWatchLater size={20} color={isWatchLater ? "red" : ""} />}
+            </i>
           </div>
         </div>
       </div>

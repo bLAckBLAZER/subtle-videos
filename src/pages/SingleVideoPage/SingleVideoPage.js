@@ -14,7 +14,7 @@ export const SingleVideoPage = () => {
   useEffect(() => {
     getVideo(videoId, setVideoDetails);
     getAllVideos(setVideos);
-  }, []);
+  }, [videoId]);
   const relatedVideos = videos.slice(1, 10);
 
   return (
