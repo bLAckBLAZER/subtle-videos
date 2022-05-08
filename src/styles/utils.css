@@ -66,6 +66,20 @@
   margin: 2rem 0;
 }
 
+.pd-y-1 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.pd-x-1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.pd-1 {
+  padding: 1rem;
+}
+
 .pos-abs {
   position: absolute;
 }
@@ -112,6 +126,11 @@
 .grid-30-70 {
   display: grid;
   grid-template-columns: 3fr 7fr;
+}
+
+.grid-70-30 {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
 }
 
 .grid-20-80 {

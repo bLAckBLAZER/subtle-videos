@@ -8,3 +8,12 @@ export const getAllVideos = async (setVideos) => {
     console.error("Error getting all videos");
   }
 };
+
+export const getVideo = async (videoId, setVideoDetails) => {
+  try {
+    const res = await axios.get(`/api/video/${videoId}`);
+    setVideoDetails(res.data.video);
+  } catch {
+    console.error("Error getting single videos");
+  }
+};

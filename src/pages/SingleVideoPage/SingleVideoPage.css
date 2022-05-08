@@ -1,0 +1,38 @@
+.single-video .video-container {
+  flex: 7;
+}
+
+.single-video #related-videos {
+  flex: 3;
+}
+
+.single-video .video-container .video-player {
+  height: 30rem;
+  width: 100%;
+}
+
+.video-detail-card {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.video-actions-container .video-action {
+  cursor: pointer;
+}
+
+#related-videos .h3 {
+  text-decoration: underline;
+  text-decoration-color: var(--primary-color);
+}
+
+@media screen and (max-width: 1000px) {
+  .single-video {
+    flex-direction: column;
+  }
+
+  #related-videos-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

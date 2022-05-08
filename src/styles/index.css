@@ -41,7 +41,7 @@ i:hover {
 
 main {
   color: var(--text-color);
-  background-color: var(--secondary-color);
+  background-color: var(--background-color);
 }
 
 .page {
