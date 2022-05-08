@@ -1,10 +1,5 @@
 import axios from "axios";
 import { removeLocalStorage, setLocalStorage } from "./localStorageCalls";
-import {
-  getUserLikedVideos,
-  getUserWatchHistory,
-  getUserWatchLater,
-} from "./videoServerCalls";
 
 export const userLogin = async (
   event,
@@ -31,9 +26,9 @@ export const userLogin = async (
       setLocalStorage("token", encodedToken);
       setLocalStorage("user", foundUser, true);
 
-      getUserLikedVideos(dispatchData, encodedToken);
-      getUserWatchHistory(dispatchData, encodedToken);
-      getUserWatchLater(dispatchData, encodedToken);
+      dispatchData({ type: "SET_LIKE_VIDEOS", payload: foundUser.likes });
+      dispatchData({ type: "SET_HISTORY", payload: foundUser.history });
+      dispatchData({ type: "SET_WATCH_LATER", payload: foundUser.watchlater });
       // getUserPlaylists()
 
       navigate(gotoPath);
@@ -80,9 +75,9 @@ export const userSignup = async (
       setLocalStorage("token", encodedToken);
       setLocalStorage("user", foundUser, true);
 
-      getUserLikedVideos(dispatchData, encodedToken);
-      getUserWatchHistory(dispatchData, encodedToken);
-      getUserWatchLater(dispatchData, encodedToken);
+      dispatchData({ type: "SET_LIKE_VIDEOS", payload: foundUser.likes });
+      dispatchData({ type: "SET_HISTORY", payload: foundUser.history });
+      dispatchData({ type: "SET_WATCH_LATER", payload: foundUser.watchlater });
 
       navigate("/");
     }
