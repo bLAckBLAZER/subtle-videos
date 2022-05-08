@@ -198,3 +198,23 @@ export const updateHistory = (video, userHistory, dispatchData, token) => {
     addToHistory(video, dispatchData, token);
   }
 };
+
+export const clearHistory = async (dispatchData, token) => {
+  try {
+    const res = await axios({
+      method: "delete",
+      url: `/api/user/history/all`,
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      dispatchData({ type: "CLEAR_HISTORY" });
+    } else {
+      console.error("clear history call failed with status: ", res.status);
+    }
+  } catch (err) {
+    console.error("Error clearing user history", err);
+  }
+};

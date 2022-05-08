@@ -35,6 +35,11 @@ export const dataReducer = (state, { type, payload }) => {
           (video) => video._id !== payload._id
         ),
       };
+    case "CLEAR_HISTORY":
+      return {
+        ...state,
+        userHistory: [],
+      };
     default:
       return state;
   }

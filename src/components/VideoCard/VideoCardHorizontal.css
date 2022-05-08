@@ -1,0 +1,17 @@
+.video-card .card-horizontal {
+  height: 8rem;
+  width: 100%;
+  max-width: 100%;
+}
+
+.video-card .card-horizontal .card-img {
+  width: 100%;
+}
+
+.video-card .card-horizontal .card-body .card-heading {
+  align-self: stretch;
+}
+
+.video-card .card-horizontal .card-text {
+  display: block;
+}
