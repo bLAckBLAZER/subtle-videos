@@ -6,3 +6,4 @@ export { SingleVideoPage } from "./SingleVideoPage/SingleVideoPage";
 export { LikedVideos } from "./LikedVideos/LikedVideos";
 export { WatchLater } from "./WatchLater/WatchLater";
 export { HistoryPage } from "./HistoryPage/HistoryPage";
+export { Playlists } from "./Playlists/Playlists";
