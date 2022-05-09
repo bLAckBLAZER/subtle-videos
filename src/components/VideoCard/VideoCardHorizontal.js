@@ -1,16 +1,11 @@
 import "./VideoCardHorizontal.css";
-import { MdWatchLater } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { toggleWatchLater } from "../../utils/videoServerCalls";
 import { useAuth, useData } from "../../contexts";
-import { isPresentInList } from "../../utils/helperFunctions";
-import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 
 export const VideoCardHorizontal = ({ video, closeAction }) => {
   const { authState } = useAuth();
-  const { dataState, dispatchData } = useData();
-  // const [isWatchLater, setIsWatchLater] = useState(false);
+  const { dispatchData } = useData();
   const navigate = useNavigate();
 
   return (

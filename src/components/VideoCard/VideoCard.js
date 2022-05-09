@@ -16,6 +16,12 @@ export const VideoCard = ({ video }) => {
     setIsWatchLater(isPresentInList(video._id, dataState.watchLaterVideos));
   });
 
+  const watchLaterClickHandler = () => {
+    authState.token
+      ? toggleWatchLater(video, dispatchData, authState.token, isWatchLater)
+      : navigate("/login");
+  };
+
   return (
     <div className="video-card">
       <div className="card">
@@ -37,18 +43,7 @@ export const VideoCard = ({ video }) => {
               <p className="card-text">{video.channel}</p>
             </div>
 
-            <i
-              onClick={() =>
-                authState.token
-                  ? toggleWatchLater(
-                      video,
-                      dispatchData,
-                      authState.token,
-                      isWatchLater
-                    )
-                  : navigate("/login")
-              }
-            >
+            <i onClick={watchLaterClickHandler}>
               {<MdWatchLater size={20} color={isWatchLater ? "red" : ""} />}
             </i>
           </div>
