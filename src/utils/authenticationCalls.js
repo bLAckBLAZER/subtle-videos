@@ -7,7 +7,8 @@ export const userLogin = async (
   email,
   password,
   navigate,
-  gotoPath
+  gotoPath,
+  dispatchData
 ) => {
   event.preventDefault();
 
@@ -24,6 +25,11 @@ export const userLogin = async (
 
       setLocalStorage("token", encodedToken);
       setLocalStorage("user", foundUser, true);
+
+      dispatchData({ type: "SET_LIKE_VIDEOS", payload: foundUser.likes });
+      dispatchData({ type: "SET_HISTORY", payload: foundUser.history });
+      dispatchData({ type: "SET_WATCH_LATER", payload: foundUser.watchlater });
+      // getUserPlaylists()
 
       navigate(gotoPath);
     }
@@ -48,7 +54,8 @@ export const userSignup = async (
   event,
   { firstName, lastName, email, password },
   dispatch,
-  navigate
+  navigate,
+  dispatchData
 ) => {
   event.preventDefault();
 
@@ -67,6 +74,10 @@ export const userSignup = async (
 
       setLocalStorage("token", encodedToken);
       setLocalStorage("user", foundUser, true);
+
+      dispatchData({ type: "SET_LIKE_VIDEOS", payload: foundUser.likes });
+      dispatchData({ type: "SET_HISTORY", payload: foundUser.history });
+      dispatchData({ type: "SET_WATCH_LATER", payload: foundUser.watchlater });
 
       navigate("/");
     }

@@ -18,6 +18,11 @@
 
 .video-actions-container .video-action {
   cursor: pointer;
+  padding: 0.5rem;
+}
+
+.video-actions-container .video-action:hover {
+  background-color: var(--secondary-color);
 }
 
 #related-videos .h3 {

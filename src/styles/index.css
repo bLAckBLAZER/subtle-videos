@@ -39,6 +39,14 @@ i:hover {
   max-width: 100%;
 }
 
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--background-color);
+}
+
 main {
   color: var(--text-color);
   background-color: var(--background-color);
