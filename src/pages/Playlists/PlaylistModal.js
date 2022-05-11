@@ -1,19 +1,36 @@
 import "./PlaylistModal.css";
 import { useState } from "react";
+import { addPlaylist } from "../../utils/videoServerCalls";
+import { useAuth, useData } from "../../contexts";
 
 export const PlaylistModal = ({ setShowModal }) => {
-  const [playlistName, setPlaylistName] = useState("");
-  const [playlistDesc, setPlaylistDesc] = useState("");
+  const [playlistData, setPlaylistData] = useState({
+    name: "",
+    description: "",
+  });
+
+  const { dispatchData } = useData();
+  const { authState } = useAuth();
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+
+    addPlaylist(playlistData, dispatchData, authState.token);
+
+    setShowModal(false);
+  };
 
   return (
     <div className="modal-container">
-      <form className="modal">
+      <form className="modal" onSubmit={(e) => formSubmitHandler(e)}>
         <input
           type="text"
           className="modal-input"
           placeholder="Name"
-          value={playlistName}
-          onChange={(e) => setPlaylistName(e.target.value)}
+          value={playlistData.name}
+          onChange={(e) =>
+            setPlaylistData({ ...playlistData, name: e.target.value })
+          }
           required
         />
         <textarea
@@ -21,8 +38,10 @@ export const PlaylistModal = ({ setShowModal }) => {
           id="playlist-desc"
           className="modal-input"
           placeholder="Description..."
-          value={playlistDesc}
-          onChange={(e) => setPlaylistDesc(e.target.value)}
+          value={playlistData.description}
+          onChange={(e) =>
+            setPlaylistData({ ...playlistData, description: e.target.value })
+          }
         />
         <div className="flex justify-ard">
           <button

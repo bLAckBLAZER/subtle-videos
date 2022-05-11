@@ -278,3 +278,138 @@ export const getUserWatchLater = async (dispatchData, token) => {
     console.error("Error setting user watchlater", err);
   }
 };
+
+export const addPlaylist = async (playlistData, dispatchData, token, video) => {
+  try {
+    const res = await axios({
+      method: "post",
+      url: "/api/user/playlists",
+      data: {
+        playlist: {
+          title: playlistData.name,
+          description: playlistData.description,
+        },
+      },
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 201) {
+      dispatchData({
+        type: "ADD_NEW_PLAYLIST",
+        payload: res.data.playlists,
+      });
+
+      if (video) {
+        addVideoToPlaylist(
+          video,
+          res.data.playlists[res.data.playlists.length - 1],
+          dispatchData,
+          token
+        );
+      }
+    } else {
+      console.error("create playlist failed with status: ", res.status);
+    }
+  } catch (err) {
+    console.error("Error creating new playlist", err);
+  }
+};
+
+export const deletePlaylist = async (
+  playlist,
+  dispatchData,
+  token,
+  navigate
+) => {
+  try {
+    const res = await axios({
+      method: "delete",
+      url: `/api/user/playlists/${playlist._id}`,
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      dispatchData({ type: "DELETE_PLAYLIST", payload: playlist });
+      navigate && navigate("/playlists");
+    } else {
+      console.error("delete playlist failed with status: ", res.status);
+    }
+  } catch (err) {
+    console.error("Error deleting playlist", err);
+  }
+};
+
+export const getPlaylist = async (playlistId, setVideoDetails, token) => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: `/api/user/playlists/${playlistId}`,
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      setVideoDetails(res.data.playlist);
+    } else {
+      console.error("get single playlist failed with status: ", res.status);
+    }
+  } catch {
+    console.error("Error getting single playlist");
+  }
+};
+
+export const getAllPlaylists = async (setPlaylists, token) => {
+  try {
+    const res = await axios({
+      method: "get",
+      url: `/api/user/playlists/`,
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      setPlaylists(res.data.playlists);
+    } else {
+      console.error("get all playlists failed with status: ", res.status);
+    }
+  } catch {
+    console.error("Error getting all playlists");
+  }
+};
+
+export const addVideoToPlaylist = async (
+  video,
+  playlistData,
+  dispatchData,
+  token
+) => {
+  try {
+    const res = await axios({
+      method: "post",
+      url: `/api/user/playlists/${playlistData._id}`,
+      data: {
+        video,
+      },
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 201) {
+      dispatchData({
+        type: "ADD_VIDEO_TO_PLAYLIST",
+        payload: res.data.playlist,
+      });
+    } else {
+      console.error("add to playlist failed with status: ", res.status);
+    }
+  } catch (err) {
+    console.error("Error adding video to playlist", err);
+  }
+};
