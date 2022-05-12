@@ -66,7 +66,9 @@ export const VideoDetails = ({ videoDetails }) => {
           </div>
           <div
             className="video-action flex justify-between gap-half align-ctr"
-            onClick={() => setShowPlaylistMenu(true)}
+            onClick={() =>
+              authState.token ? setShowPlaylistMenu(true) : navigate("/login")
+            }
           >
             <MdPlaylistPlay size={20} />
             Add to Playlist
