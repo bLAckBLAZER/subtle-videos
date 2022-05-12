@@ -83,6 +83,16 @@ export const dataReducer = (state, { type, payload }) => {
         userPlaylists: updatedAllPlaylists,
       };
 
+    case "DELETE_VIDEO_FROM_PLAYLIST":
+      const temp1 = state.userPlaylists.filter(
+        (playlist) => playlist._id !== payload._id
+      );
+      const newAllPlaylists = temp1.concat(payload);
+      return {
+        ...state,
+        userPlaylists: newAllPlaylists,
+      };
+
     default:
       return state;
   }

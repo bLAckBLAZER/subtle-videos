@@ -413,3 +413,34 @@ export const addVideoToPlaylist = async (
     console.error("Error adding video to playlist", err);
   }
 };
+
+export const deleteVideoFromPlaylist = async (
+  video,
+  playlist,
+  dispatchData,
+  token
+) => {
+  try {
+    const res = await axios({
+      method: "delete",
+      url: `/api/user/playlists/${playlist._id}/${video._id}`,
+      headers: {
+        authorization: token,
+      },
+    });
+
+    if (res.status === 200) {
+      dispatchData({
+        type: "DELETE_VIDEO_FROM_PLAYLIST",
+        payload: res.data.playlist,
+      });
+    } else {
+      console.error(
+        "delete video from playlist failed with status: ",
+        res.status
+      );
+    }
+  } catch (err) {
+    console.error("Error deleting video from playlist", err);
+  }
+};

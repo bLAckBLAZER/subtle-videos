@@ -47,6 +47,7 @@ export const PlaylistMenu = ({ setShowPlaylistMenu, videoDetails }) => {
           {playlists.map((playlist) => (
             <li
               className="pd-1"
+              key={playlist._id}
               onClick={() => {
                 addVideoToPlaylist(
                   videoDetails,

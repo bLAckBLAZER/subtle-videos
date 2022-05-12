@@ -1,19 +1,23 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth, useData } from "../../contexts";
-import { deletePlaylist, getPlaylist } from "../../utils/videoServerCalls";
+import {
+  deletePlaylist,
+  getPlaylist,
+  deleteVideoFromPlaylist,
+} from "../../utils/videoServerCalls";
 import { VideoCardHorizontal } from "../../components";
 
 export const SinglePlaylistPage = () => {
   const { authState } = useAuth();
-  const { dispatchData } = useData();
+  const { dataState, dispatchData } = useData();
   const [playlistDetails, setPlaylistDetails] = useState({});
   const { playlistId } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     getPlaylist(playlistId, setPlaylistDetails, authState.token);
-  }, []);
+  }, [dataState]);
 
   return (
     <div className="page flex flex-col">
@@ -39,7 +43,14 @@ export const SinglePlaylistPage = () => {
         playlistDetails?.videos?.map((video) => (
           <VideoCardHorizontal
             video={video}
-            closeAction={() => console.log("delted video from playlist")}
+            closeAction={() =>
+              deleteVideoFromPlaylist(
+                video,
+                playlistDetails,
+                dispatchData,
+                authState.token
+              )
+            }
             key={video._id}
           />
         ))
