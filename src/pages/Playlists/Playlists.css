@@ -1,0 +1,18 @@
+.playlist-item {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0.5rem;
+  border: 1px solid var(--secondary-color);
+  padding: 0.5rem;
+}
+
+.playlist-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.playlist-item:hover {
+  background-color: var(--secondary-color);
+}

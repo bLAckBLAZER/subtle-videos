@@ -57,6 +57,42 @@ export const dataReducer = (state, { type, payload }) => {
         userHistory: payload,
       };
 
+    case "ADD_NEW_PLAYLIST":
+      return {
+        ...state,
+        userPlaylists: payload, // payload contains entire updated array
+      };
+
+    case "DELETE_PLAYLIST":
+      return {
+        ...state,
+        userPlaylists: state.userPlaylists.filter(
+          (playlist) => playlist._id !== payload._id
+        ),
+      };
+
+    case "ADD_VIDEO_TO_PLAYLIST":
+      const temp = state.userPlaylists.filter(
+        (playlist) => playlist._id !== payload._id
+      );
+
+      const updatedAllPlaylists = temp.concat(payload);
+
+      return {
+        ...state,
+        userPlaylists: updatedAllPlaylists,
+      };
+
+    case "DELETE_VIDEO_FROM_PLAYLIST":
+      const temp1 = state.userPlaylists.filter(
+        (playlist) => playlist._id !== payload._id
+      );
+      const newAllPlaylists = temp1.concat(payload);
+      return {
+        ...state,
+        userPlaylists: newAllPlaylists,
+      };
+
     default:
       return state;
   }

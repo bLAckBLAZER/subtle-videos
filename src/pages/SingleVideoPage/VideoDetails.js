@@ -7,6 +7,7 @@ import {
 } from "../../utils/videoServerCalls";
 import { useState, useEffect } from "react";
 import { isPresentInList } from "../../utils/helperFunctions";
+import { PlaylistMenu } from "../Playlists/PlaylistMenu";
 export const VideoDetails = ({ videoDetails }) => {
   const { title, dateAdded, description, views, channel } = videoDetails;
   const { dataState, dispatchData } = useData();
@@ -16,6 +17,7 @@ export const VideoDetails = ({ videoDetails }) => {
 
   const [isVideoLiked, setIsVideoLiked] = useState(false);
   const [isWatchLater, setIsWatchLater] = useState(false);
+  const [showPlaylistMenu, setShowPlaylistMenu] = useState(false);
 
   useEffect(() => {
     setIsVideoLiked(isPresentInList(videoDetails._id, dataState.likedVideos));
@@ -62,12 +64,23 @@ export const VideoDetails = ({ videoDetails }) => {
             <MdWatchLater size={20} color={isWatchLater ? "red" : ""} />
             Watch later
           </div>
-          <div className="video-action flex justify-between gap-half align-ctr">
+          <div
+            className="video-action flex justify-between gap-half align-ctr"
+            onClick={() =>
+              authState.token ? setShowPlaylistMenu(true) : navigate("/login")
+            }
+          >
             <MdPlaylistPlay size={20} />
             Add to Playlist
           </div>
         </div>
       </div>
+      {showPlaylistMenu && (
+        <PlaylistMenu
+          setShowPlaylistMenu={setShowPlaylistMenu}
+          videoDetails={videoDetails}
+        />
+      )}
       <div className="video-detail-card flex justify-between align-ctr gap-1">
         <img src="https://picsum.photos/200" alt="" className="avatar" />
         <div className="flex-1">

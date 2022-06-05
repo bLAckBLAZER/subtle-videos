@@ -1,0 +1,12 @@
+.playlist-menu.modal-container .modal {
+  width: 16rem;
+}
+
+.playlist-menu.modal-container li:hover {
+  background-color: var(--background-color);
+  cursor: pointer;
+}
+
+.playlist-menu.modal-container #add-playlist:hover {
+  cursor: pointer;
+}
