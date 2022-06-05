@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
 import "./Homepage.css";
-import { getAllVideos } from "../../utils/videoServerCalls";
 import { HeroSection } from "./HeroSection";
 import { VideoListHorizontal } from "../../components";
+import { useData } from "../../contexts";
 
 export const Homepage = () => {
-  const [videos, setVideos] = useState([]);
+  const { dataState } = useData();
 
-  const trendingVideos = videos.slice(1, 6);
-
-  useEffect(() => {
-    getAllVideos(setVideos);
-  }, []);
+  const trendingVideos = dataState.allVideos.slice(1, 6);
 
   return (
     <div className="page flex flex-col gap-1">

@@ -1,12 +1,25 @@
 import axios from "axios";
 import { isPresentInList } from "./helperFunctions";
 
-export const getAllVideos = async (setVideos) => {
+export const getAllVideos = async (dispatchData) => {
   try {
     const res = await axios.get("/api/videos");
-    setVideos(res.data.videos);
+    dispatchData({ type: "SET_ALL_VIDEOS", payload: res.data.videos });
   } catch {
     console.error("Error getting all videos");
+  }
+};
+
+export const getAllCategories = async (setCategories) => {
+  try {
+    const res = await axios.get("/api/categories");
+    if (res.status === 200) {
+      setCategories(res.data.categories);
+    } else {
+      console.error("Error getting all categories");
+    }
+  } catch {
+    console.error("Error getting all categories");
   }
 };
 
