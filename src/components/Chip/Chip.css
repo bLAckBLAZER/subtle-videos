@@ -8,3 +8,7 @@
 .chip.active {
   background-color: var(--primary-color);
 }
+
+.chip:hover {
+  cursor: pointer;
+}
