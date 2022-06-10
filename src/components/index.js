@@ -6,3 +6,4 @@ export { Box } from "./Box/Box";
 export { VideoListHorizontal } from "./VideoLists";
 export { VideoCard } from "./VideoCard/VideoCard";
 export { VideoCardHorizontal } from "./VideoCard/VideoCardHorizontal";
+export { Chip } from "./Chip/Chip";

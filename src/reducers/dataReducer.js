@@ -1,5 +1,8 @@
 export const dataReducer = (state, { type, payload }) => {
   switch (type) {
+    case "SET_ALL_VIDEOS":
+      return { ...state, allVideos: payload };
+
     case "LIKE_VIDEO":
       return { ...state, likedVideos: state.likedVideos.concat(payload) };
 

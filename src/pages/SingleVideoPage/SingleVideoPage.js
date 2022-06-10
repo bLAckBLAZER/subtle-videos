@@ -14,15 +14,18 @@ import { useAuth, useData } from "../../contexts";
 export const SingleVideoPage = () => {
   const { videoId } = useParams();
   const [videoDetails, setVideoDetails] = useState({});
-  const [videos, setVideos] = useState([]);
+  // const [videos, setVideos] = useState([]);
+  const {
+    dataState: { allVideos },
+  } = useData();
   const { dataState, dispatchData } = useData();
   const { authState } = useAuth();
 
   useEffect(() => {
     getVideo(videoId, setVideoDetails);
-    getAllVideos(setVideos);
+    // getAllVideos(setVideos);
   }, [videoId]);
-  const relatedVideos = videos.slice(1, 10);
+  const relatedVideos = allVideos.slice(1, 10);
 
   return (
     <div className=" page flex gap-1 single-video">
