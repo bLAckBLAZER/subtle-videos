@@ -40,10 +40,10 @@ export const Explore = () => {
           />
         ))}
       </section>
+      {!filteredVideos.length && (
+        <div className="h3 txt-center">Oops! We ran out of videos!.</div>
+      )}
       <section className="grid-3-col">
-        {!filteredVideos.length && (
-          <div className=" h3 txt-center">Oops! We ran out of videos!.</div>
-        )}
         {filteredVideos.map((video) => (
           <VideoCard video={video} key={video._id} />
         ))}
