@@ -14,6 +14,7 @@ import {
   SinglePlaylistPage,
 } from "./pages";
 import { PrivateRoute } from "./router/PrivateRoute";
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
@@ -53,6 +54,7 @@ does not exist.
           />
         </Routes>
       </main>
+      <Toaster />
     </div>
   );
 };

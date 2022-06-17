@@ -1,5 +1,6 @@
 import axios from "axios";
 import { removeLocalStorage, setLocalStorage } from "./localStorageCalls";
+import toast from "react-hot-toast";
 
 export const userLogin = async (
   event,
@@ -32,8 +33,14 @@ export const userLogin = async (
       // getUserPlaylists()
 
       navigate(gotoPath);
+      toast.success("Login successful!", {
+        position: "bottom-center",
+      });
     }
   } catch {
+    toast.error("Oops! Login failed. Please check your credentials!", {
+      position: "bottom-center",
+    });
     throw new Error("Error in loggin in!");
   }
 };
@@ -45,7 +52,13 @@ export const userLogout = (dispatchAuth, navigate) => {
 
     dispatchAuth({ type: "LOGOUT" });
     navigate("/");
+    toast.success("Logout successful!", {
+      position: "bottom-center",
+    });
   } catch {
+    toast.error("Oops! Logout failed. Please try again!", {
+      position: "bottom-center",
+    });
     throw new Error("Logout failed");
   }
 };
@@ -80,8 +93,14 @@ export const userSignup = async (
       dispatchData({ type: "SET_WATCH_LATER", payload: foundUser.watchlater });
 
       navigate("/");
+      toast.success("Signup successful!", {
+        position: "bottom-center",
+      });
     }
   } catch (err) {
+    toast.error("Oops! Signup failed. Please check the details entered!", {
+      position: "bottom-center",
+    });
     console.error(err);
   }
 };
