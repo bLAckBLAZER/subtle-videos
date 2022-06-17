@@ -4,9 +4,9 @@
 
 .playlist-menu.modal-container li:hover {
   background-color: var(--background-color);
-  cursor: pointer;
 }
 
-.playlist-menu.modal-container #add-playlist:hover {
+.playlist-menu.modal-container #add-playlist:hover,
+.playlist-menu.modal-container li input:hover {
   cursor: pointer;
 }

@@ -6,12 +6,14 @@ import {
   getAllPlaylists,
   addPlaylist,
   addVideoToPlaylist,
+  deleteVideoFromPlaylist,
 } from "../../utils/videoServerCalls";
+import { isPresentInList } from "../../utils/helperFunctions";
 
 export const PlaylistMenu = ({ setShowPlaylistMenu, videoDetails }) => {
   const [playlists, setPlaylists] = useState([]);
   const { authState } = useAuth();
-  const { dispatchData } = useData();
+  const { dataState, dispatchData } = useData();
 
   const [playlistData, setPlaylistData] = useState({
     name: "",
@@ -22,7 +24,7 @@ export const PlaylistMenu = ({ setShowPlaylistMenu, videoDetails }) => {
 
   useEffect(() => {
     getAllPlaylists(setPlaylists, authState.token);
-  }, []);
+  }, [dataState]);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -44,23 +46,38 @@ export const PlaylistMenu = ({ setShowPlaylistMenu, videoDetails }) => {
           </i>
         </div>
         <ul>
-          {playlists.map((playlist) => (
-            <li
-              className="pd-1"
-              key={playlist._id}
-              onClick={() => {
-                addVideoToPlaylist(
-                  videoDetails,
-                  playlist,
-                  dispatchData,
-                  authState.token
-                );
-                setShowPlaylistMenu(false);
-              }}
-            >
-              {playlist.title}
-            </li>
-          ))}
+          {playlists.map((playlist) => {
+            const isVideoAdded = isPresentInList(
+              videoDetails._id,
+              playlist.videos
+            );
+
+            return (
+              <li className="pd-1" key={playlist._id}>
+                <input
+                  type="checkbox"
+                  id={playlist._id}
+                  checked={isVideoAdded}
+                  onChange={() =>
+                    isVideoAdded
+                      ? deleteVideoFromPlaylist(
+                          videoDetails,
+                          playlist,
+                          dispatchData,
+                          authState.token
+                        )
+                      : addVideoToPlaylist(
+                          videoDetails,
+                          playlist,
+                          dispatchData,
+                          authState.token
+                        )
+                  }
+                />
+                <label htmlFor={playlist._id}> {playlist.title}</label>
+              </li>
+            );
+          })}
         </ul>
 
         {!showAddOption && (
