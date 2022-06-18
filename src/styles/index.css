@@ -8,6 +8,7 @@
   --primary-color: #ff0000;
   --secondary-color: #202020;
   --primary-btn-hover: #ff0000d3;
+  --default-hover-background: rgba(0, 0, 0, 0.1);
 }
 
 body {

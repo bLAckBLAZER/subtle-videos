@@ -1,7 +1,7 @@
 import "../../styles/navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/subtle-videos-logo.png";
-import { Input, Hamburger } from "../../components";
+import { Input, Hamburger, SearchBar } from "../../components";
 import { useAuth } from "../../contexts";
 import { userLogout } from "../../utils/authenticationCalls";
 
@@ -21,7 +21,8 @@ export const NavBar = () => {
           </div>
         </div>
       </Link>
-      <Input id="search-bar" placeholder="What do you want to watch today?" />
+      <SearchBar />
+
       <ul className="nav-actions">
         <li className="nav-action-item">
           {authState.token ? (

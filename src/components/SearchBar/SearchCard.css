@@ -1,0 +1,7 @@
+.search-card {
+  padding: 0.5rem 1rem;
+}
+
+.search-card:hover {
+  background-color: var(--default-hover-background);
+}

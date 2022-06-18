@@ -29,12 +29,15 @@
 }
 
 .navbar .input-wrapper {
-  width: 30%;
   align-self: center;
 }
 
 .navbar .input-container {
   border-radius: 1rem;
+}
+
+.navbar #search-bar {
+  width: 30%;
 }
 
 @media screen and (max-width: 768px) {
@@ -45,6 +48,11 @@
     width: 100%;
     background-color: inherit;
     padding: 0 0.5rem;
+  }
+
+  .navbar .search-results {
+    width: 100%;
+    margin-right: 0.5rem;
   }
 
   main {

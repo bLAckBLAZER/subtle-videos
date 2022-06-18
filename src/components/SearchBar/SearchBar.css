@@ -1,0 +1,7 @@
+.search-results {
+  position: absolute;
+  background-color: var(--pure-white);
+  max-height: 10rem;
+  overflow-y: scroll;
+  color: var(--secondary-color);
+}
