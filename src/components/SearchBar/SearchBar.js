@@ -18,10 +18,11 @@ export const SearchBar = () => {
   const navigate = useNavigate();
 
   const inputChangeHandler = (e) => {
-    setSearchText(e.target.value);
+    const inputText = e.target.value;
+    setSearchText(inputText);
 
     const temp = allVideos.filter((video) =>
-      video.title.toLowerCase().includes(searchText.toLowerCase())
+      video.title.toLowerCase().includes(inputText.toLowerCase())
     );
 
     setSearchResults(temp);
@@ -41,6 +42,7 @@ export const SearchBar = () => {
         <ul className="search-results">
           {searchResults.map((video) => (
             <SearchCard
+              image={`https://img.youtube.com/vi/${video._id}/mqdefault.jpg`}
               title={video.title}
               onClickHandler={() => {
                 navigate(`/watch/${video._id}`);

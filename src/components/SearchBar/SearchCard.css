@@ -5,3 +5,8 @@
 .search-card:hover {
   background-color: var(--default-hover-background);
 }
+
+.search-card img {
+  height: 100px;
+  width: 100px;
+}
