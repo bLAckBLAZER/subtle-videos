@@ -4,6 +4,7 @@
 
 .search-card:hover {
   background-color: var(--default-hover-background);
+  cursor: pointer;
 }
 
 .search-card img {
