@@ -1,0 +1,13 @@
+.search-card {
+  padding: 0.5rem 1rem;
+}
+
+.search-card:hover {
+  background-color: var(--default-hover-background);
+  cursor: pointer;
+}
+
+.search-card img {
+  height: 100px;
+  width: 100px;
+}

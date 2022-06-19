@@ -7,3 +7,5 @@ export { VideoListHorizontal } from "./VideoLists";
 export { VideoCard } from "./VideoCard/VideoCard";
 export { VideoCardHorizontal } from "./VideoCard/VideoCardHorizontal";
 export { Chip } from "./Chip/Chip";
+export { SearchBar } from "./SearchBar/SearchBar";
+export { SearchCard } from "./SearchBar/SearchCard";
