@@ -1,6 +1,6 @@
 import { Input } from "../Input/Input";
 import { MdSearch, MdCancel } from "react-icons/md";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useData } from "../../contexts";
 import { SearchCard } from "./SearchCard";
 import "./SearchBar.css";
@@ -17,15 +17,22 @@ export const SearchBar = () => {
 
   const navigate = useNavigate();
 
+  const timerId = useRef(null);
+
   const inputChangeHandler = (e) => {
     const inputText = e.target.value;
     setSearchText(inputText);
 
-    const temp = allVideos.filter((video) =>
-      video.title.toLowerCase().includes(inputText.toLowerCase())
-    );
+    if (timerId.current) {
+      clearTimeout(timerId.current);
+    }
 
-    setSearchResults(temp);
+    timerId.current = setTimeout(() => {
+      const filteredVideos = allVideos.filter((video) =>
+        video.title.toLowerCase().includes(inputText.toLowerCase())
+      );
+      setSearchResults(filteredVideos);
+    }, 500);
   };
 
   return (

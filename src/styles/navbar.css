@@ -40,6 +40,10 @@
   width: 30%;
 }
 
+.navbar #search-bar input {
+  border-radius: 0;
+}
+
 @media screen and (max-width: 768px) {
   .navbar #search-bar {
     position: fixed;
