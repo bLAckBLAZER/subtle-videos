@@ -23,7 +23,19 @@ export const Login = () => {
   return (
     <div className="auth page">
       <Box className="mg-y-auto">
-        <form>
+        <form
+          onSubmit={(e) =>
+            userLogin(
+              e,
+              dispatchAuth,
+              email,
+              password,
+              navigate,
+              gotoPath,
+              dispatchData
+            )
+          }
+        >
           <div className="h2 txt-center">Login</div>
           <div className="width-100">
             <label className="input-label">
@@ -59,7 +71,7 @@ export const Login = () => {
               </div>
             </label>
           </div>
-          <div className="auth-actions">
+          {/* <div className="auth-actions">
             <div className="flex-1">
               <label>
                 <input type="checkbox" id="remember-me" />
@@ -69,23 +81,10 @@ export const Login = () => {
             <div className="flex-1">
               <Link to="/signup">Forgot your password?</Link>
             </div>
-          </div>
+          </div> */}
           <div className="auth-actions">
             <div className="flex-1">
-              <button
-                className="btn btn-primary"
-                onClick={(e) =>
-                  userLogin(
-                    e,
-                    dispatchAuth,
-                    email,
-                    password,
-                    navigate,
-                    gotoPath,
-                    dispatchData
-                  )
-                }
-              >
+              <button className="btn btn-primary" type="submit">
                 Login
               </button>
             </div>
