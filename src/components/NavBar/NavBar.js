@@ -4,10 +4,13 @@ import Logo from "../../assets/images/subtle-videos-logo.png";
 import { Input, Hamburger, SearchBar } from "../../components";
 import { useAuth } from "../../contexts";
 import { userLogout } from "../../utils/authenticationCalls";
+import { useState } from "react";
+import { SideBar } from "./SideBar";
 
 export const NavBar = () => {
   const { authState, dispatchAuth } = useAuth();
   const navigate = useNavigate();
+  const [showSideBar, setShowSideBar] = useState(false);
 
   return (
     <nav className="navbar fixed">
@@ -40,9 +43,17 @@ export const NavBar = () => {
         </li>
 
         <li className="nav-action-item">
-          <Hamburger />
+          <Hamburger onClickAction={() => setShowSideBar(!showSideBar)} />
         </li>
       </ul>
+      {showSideBar && (
+        <SideBar
+          setShowSideBar={setShowSideBar}
+          userLogout={userLogout}
+          dispatchAuth={dispatchAuth}
+          authState={authState}
+        />
+      )}
     </nav>
   );
 };
